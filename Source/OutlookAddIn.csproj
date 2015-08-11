@@ -22,12 +22,12 @@
     <ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{113CFD79-5164-4662-88BA-9DE131042A99}</ProjectGuid>
+    <ProjectGuid>{E458A268-1FE7-4D61-BDF5-9B122E910961}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>OutlookAddIn2</RootNamespace>
-    <AssemblyName>OutlookAddIn2</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>OutlookAddIn</RootNamespace>
+    <AssemblyName>OutlookAddIn</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>publish\</PublishUrl>
@@ -39,17 +39,17 @@
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
     <IsWebBootstrapper>False</IsWebBootstrapper>
-    <ProductName>OutlookAddIn2</ProductName>
+    <ProductName>OutlookAddIn</ProductName>
     <PublisherName />
     <SupportUrl />
-    <FriendlyName>OutlookAddIn2</FriendlyName>
+    <FriendlyName>OutlookAddIn</FriendlyName>
     <OfficeApplicationDescription />
     <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -130,7 +130,7 @@
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -156,11 +156,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+    <Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <Private>False</Private>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <Private>False</Private>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
@@ -179,9 +179,18 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="FormConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfiguration.Designer.cs">
+      <DependentUpon>FormConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="FormConfiguration.resx">
+      <DependentUpon>FormConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -191,14 +200,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SentItemForm.resx">
-      <DependentUpon>SentItemForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForSavingSentItems.resx">
-      <DependentUpon>SettingsForSavingSentItems.cs</DependentUpon>
+    <EmbeddedResource Include="Ribbon1.resx">
+      <DependentUpon>Ribbon1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="OutlookAddIn2_TemporaryKey.pfx" />
+    <None Include="OutlookAddIn_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -208,17 +214,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SentItemForm.cs">
+    <Compile Include="Ribbon1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SentItemForm.Designer.cs">
-      <DependentUpon>SentItemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsForSavingSentItems.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SettingsForSavingSentItems.Designer.cs">
-      <DependentUpon>SettingsForSavingSentItems.cs</DependentUpon>
+    <Compile Include="Ribbon1.Designer.cs">
+      <DependentUpon>Ribbon1.cs</DependentUpon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
@@ -239,10 +239,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>OutlookAddIn2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>OutlookAddIn_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>ED113C5EA57A099B87D31B4CD7487E174D3E8932</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E3DF9816772677784A95059F8753409BAA3962CB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -252,8 +252,8 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
-        <ProjectProperties HostName="Outlook" HostPackage="{20A848B8-E01F-4801-962E-25DB0FF57389}" OfficeVersion="14.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\14.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
-        <Host Name="Outlook" GeneratedCodeNamespace="OutlookAddIn2" IconIndex="0">
+        <ProjectProperties HostName="Outlook" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\15.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
+        <Host Name="Outlook" GeneratedCodeNamespace="OutlookAddIn" IconIndex="0">
           <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>

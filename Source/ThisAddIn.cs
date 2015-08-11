@@ -8,8 +8,9 @@ using Office = Microsoft.Office.Core;
 using System.Windows.Forms;
 using System.Configuration;
 using System.IO;
+using System.Configuration;
 
-namespace OutlookAddIn2
+namespace OutlookAddIn
 {
     public partial class ThisAddIn
     {
@@ -26,7 +27,9 @@ namespace OutlookAddIn2
             OutlookInspectors = OutlookApplication.Inspectors;
             OutlookInspectors.NewInspector += new Microsoft.Office.Interop.Outlook.InspectorsEvents_NewInspectorEventHandler(OutlookInspectors_NewInspector);
             OutlookApplication.ItemSend += new Microsoft.Office.Interop.Outlook.ApplicationEvents_11_ItemSendEventHandler(OutlookApplication_ItemSend);
+        
         }
+
 
         void OutlookInspectors_NewInspector(Microsoft.Office.Interop.Outlook.Inspector Inspector)
         {
@@ -37,11 +40,12 @@ namespace OutlookAddIn2
             }
 
         }
+
         void OutlookApplication_ItemSend(object Item, ref bool Cancel)
         {
 
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            string filepath = config.AppSettings.Settings["FileAddress"].Value + DateTime.Now.Millisecond.ToString() + ".rfc";
+            string filepath = config.AppSettings.Settings["Path"].Value + DateTime.Now.Millisecond.ToString() + ".rfc";
             FileStream fstream = new FileStream(filepath, FileMode.Create);
             StreamWriter writer = new StreamWriter(fstream, System.Text.ASCIIEncoding.ASCII);
             writer.Write("From: " + OutlookMailItem.SenderEmailAddress + "\r");
@@ -54,7 +58,7 @@ namespace OutlookAddIn2
 
             //MessageBox.Show(strchk + "\r\n" + strchkTo);
         }
-
+        
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
         }

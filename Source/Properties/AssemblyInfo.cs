@@ -6,11 +6,11 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OutlookAddIn2")]
+[assembly: AssemblyTitle("OutlookAddIn")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OutlookAddIn2")]
+[assembly: AssemblyProduct("OutlookAddIn")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e47c2f13-1174-400d-b0e8-77e7a17750e7")]
+[assembly: Guid("af426682-c9c3-426c-aee0-48f531304ac3")]
 
 // Version information for an assembly consists of the following four values:
 //
